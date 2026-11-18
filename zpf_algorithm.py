@@ -2,7 +2,7 @@
 
 Modell (alle Zahlen Annahmen, siehe zpf_constants): relative Bodenfeuchte s zwischen Welkepunkt s_w und 1 (= frisch gegossen).
 Austrocknung je Tag: rate * rho(s), rho(s) = clip((s - s_w)/(s* - s_w), 0, 1): oberhalb des Stressbeginns s* linear, darunter langsamer,
-am Welkepunkt Stillstand (Form nach Porporato, Laio, Ridolfi, Rodriguez-Iturbe 2001; nur Abstract gelesen).
+am Welkepunkt Stillstand (lineare Vereinfachung in Anlehnung an Porporato, Laio, Ridolfi, Rodriguez-Iturbe 2001; nur Abstract gelesen).
 Trockenstress je Tag zeta = clip((s* - s)/(s* - s_w), 0, 1). Gießen setzt s auf 1. Fäulnisschaden nur beim Gießen auf noch feuchte
 Erde: (s - Grenze)/(1 - Grenze), wenn die Pflanze eine Grenze hat. Verlust = Trockenstress + w_rot * Fäulnis + c_w * Gießen + c_c * Kontrolle.
 """

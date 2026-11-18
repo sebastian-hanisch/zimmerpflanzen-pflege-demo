@@ -1,7 +1,7 @@
 """Strategien abstimmen und auf denselben Zufallspfaden vergleichen (Tabelle in Akt 1, Referenzraster).
 
 Abgestimmte Strategien (Kalender, Schwelle, adaptive Kontrolle) bekommen ihren Parameter je Pflanze auf getrennten Trainingspfaden
-und sind damit ein Quasi-Orakel: sie kennen die Verteilung des Modells. Die Lerner finden ihre Parameter durch Probieren (drei Jahre,
+und sind damit ein Quasi-Orakel: sie sind auf dem Modell selbst abgestimmt. Die Lerner finden ihre Parameter durch Probieren (drei Jahre,
 ausgewiesen wird Jahr 3, Lernkosten also nicht enthalten)."""
 
 import numpy as np

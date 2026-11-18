@@ -228,3 +228,49 @@ def test_handbeispiel_zahlen_der_readme():
     assert H.absence_stress(14, reservoir=F(1, 2)) == 0 and H.absence_stress(14, visits=(10,)) == 0
     assert H.rot(F(7, 10), F(1, 2)) == F(2, 5)
     assert H.best_plan_dp(20) == F(3, 10)
+
+
+# ----------------------------------------------------------------------------------------------------------- Bedingung der Aussage „Messen lohnt knapp“
+def test_bei_unabhaengigem_wetter_liegt_der_kalender_vorn(plants):
+    """Die Aussage „Messen −4 %“ gilt bei Wetter-Autokorrelation 0,95; bei 0 liegt der beste Kalender vorn (README, Befunde)."""
+    rows = ST.compare(plants, 0.4, 0.0, (5.0, 0.3, 0.02), 0.15, 3, 100, 1000, include_lerner=False)
+    cal = min(r["loss"] for r in rows if r["name"].startswith("Kalender Sommer"))
+    mess = min(r["loss"] for r in rows if r["group"] == "Messen")
+    assert mess > cal
+
+
+def test_klassen_der_readme_stehen_in_den_konstanten():
+    """Die Zeile „Klassen der Pflanzen“ der README nennt genau die Werte aus zpf_constants (Anzahl, Trockenzeit, Stressbeginn, Welkepunkt, Fäulnisgrenze)."""
+    import zpf_constants as C
+
+    readme = (ROOT / "README.md").read_text(encoding="utf-8") if "ROOT" in globals() else open("README.md", encoding="utf-8").read()
+    sukk, zimm, durst = C.KLASSEN
+    assert (sukk[1], sukk[2], sukk[3], sukk[4], sukk[5]) == (4, 21.0, 0.25, 0.10, 0.50)
+    assert (zimm[1], zimm[2], zimm[3], zimm[4], zimm[5]) == (5, 9.0, 0.40, 0.15, 0.75)
+    assert (durst[1], durst[2], durst[3], durst[4], durst[5]) == (3, 5.0, 0.55, 0.25, 1.00)
+    assert "Sukkulenten (4 Pflanzen): Median der Trockenzeit 21 Tage, Stressbeginn 0,25, Welkepunkt 0,10, Fäulnisgrenze 0,50" in readme
+    assert "Zimmerpflanzen (5): 9 Tage, 0,40, 0,15, 0,75. Durstige (3): 5 Tage, 0,55, 0,25, keine Fäulnisgrenze" in readme
+    assert C.HET == 0.25 and C.COMMON_SD == 0.25 and C.INDIV_SD == 0.15
+
+
+def test_modelldetails_der_readme_stehen_im_code():
+    """Ablauf, Anfangswerte, Strategie-Parameter und Urlaub-Annahmen des README-Absatzes „Ablauf eines Tages …“ stimmen mit dem Code überein."""
+    import inspect
+
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    assert "Standard 0,95" in readme and C.DEFAULT_AR == 0.95
+    assert C.ABREISE_TAG == {C.SEASON_SUMMER: 195, C.SEASON_WINTER: 15} and "Tag 195 (Sommer) oder am Tag 15 (Winter)" in readme
+    assert (C.DEFAULT_DOCK, C.DOCK_MAX, C.DEFAULT_SHADE, C.SHADE_MIN, C.SHADE_MAX, C.VISITS_MAX) == (0.5, 1.5, 0.5, 0.3, 1.0, 3)
+    assert ST.LERNER_GRID == tuple((d, m) for d in (1, 2, 3) for m in (0.05, 0.15, 0.30))
+    assert ST.LERNADAPTIV_GRID == tuple((a, b) for a in (0.03, 0.06, 0.10) for b in (0.01, 0.02, 0.04))
+    assert "Stressbeginn plus 0,10" in readme and "plants.sstar + 0.10" in inspect.getsource(ST.make_policy)
+    assert A.Adaptiv.__init__.__defaults__ == (0.5, 0.5) and A.Lerner.act.__qualname__  # lam = mix = 0,5
+    assert "zwischen 1 und 7 Tagen" in readme and "vmax" in inspect.getsource(A.Adaptiv)
+    # Start: frisch gegossen, Tag 0 = 1. Januar = langsamste Austrocknung des Jahres
+    assert A.season_factor(0, 0.4) == pytest.approx(0.6) and A.season_factor(0, 0.4) == min(A.season_factor(d, 0.4) for d in range(365))
+    # Welke = Trockenstress ab 0,5; Beschneiden der Messung findet nicht statt
+    plants = PL.make_plants()
+    assert A.zeta(np.array([plants.sstar[0] - 0.5 * (plants.sstar[0] - plants.sw[0])]), plants.sstar[0], plants.sw[0])[0] == pytest.approx(0.5)
+    # Beide Zufallsfaktoren haben den Mittelwert 1
+    noise, _ = A.weather(200, 365, plants.n, 7, 0.95)
+    assert noise.mean() == pytest.approx(1.0, abs=0.02)

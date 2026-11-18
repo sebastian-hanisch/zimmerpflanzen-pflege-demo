@@ -80,8 +80,9 @@ def fig_crossing(grid, w_rot, current=None):
         colorscale="RdBu", zmin=-lim, zmax=lim, zmid=0, colorbar=dict(title="Messen gegen<br>Kalender (%)"),
         hovertemplate="Kontrollkosten %{x}, Rauschen %{y}: %{text}<extra></extra>",
     ))
-    if current:
-        fig.add_annotation(x=f"{current[0]:g}", y=f"{current[1]:g}", text="◎", showarrow=False, font=dict(size=26, color="black"))
+    if current and current[0] in ccs and current[1] in sigmas:
+        # auf Kategorieachsen zählen Positionen (0, 1, ...), nicht die Beschriftungen: Text wie "0.02" würde als Zahl gelesen und die Marke verrutschen
+        fig.add_annotation(x=ccs.index(current[0]), y=sigmas.index(current[1]), text="◎", showarrow=False, font=dict(size=26, color="black"))
     fig.update_xaxes(title="Kosten je Kontrolle", type="category")
     fig.update_yaxes(title="Messrauschen", type="category")
     return _fixed(fig, 330)

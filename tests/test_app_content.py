@@ -27,6 +27,7 @@ def test_vier_tabs_in_fester_reihenfolge(at):
 def test_expander_stehen_unter_ihren_titeln(at):
     labels = {e.label for e in at.expander}
     assert {
+        "💬 In einfachen Worten",
         "🔧 Wie wir das erreichen – vollständiger Methodenvergleich",
         "📐 Mathematische Formulierung",
         "⚠️ Annahmen, Grenzen und bekannte Probleme",

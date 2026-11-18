@@ -63,7 +63,7 @@ PRESET_HELP = {
     "Exakter Sensor (Rauschen 0, Kontrolle gratis)": "Ein genauer, kostenloser Sensor: Wann lohnt Messen dann gegenüber dem besten Kalender?",
     "Grobe Fingerprobe (Rauschen 0,30)": "Die Fingerprobe schätzt die Feuchte nur grob (Rauschen 0,30): Messen verliert gegen den Kalender.",
     "Ohne Jahreszeit": "Austrocknung das ganze Jahr gleich schnell (Amplitude 0): ein fester Kalender ist besonders stark.",
-    "Sukkulenten vorsichtig (Fäulnisgewicht 20)": "Fäulnis wiegt 20-mal: Sukkulenten werden vor dem Urlaub nicht mehr gegossen, solange es irgend geht.",
+    "Sukkulenten vorsichtig (Fäulnisgewicht 20)": "Fäulnisgewicht 20 statt 5: Sukkulenten werden im Winter erst ab etwa 27 Tagen Abwesenheit vor der Abreise gegossen, im Hochsommer ab etwa 10 Tagen (Akt 2).",
     "Urlaub im Sommer, 21 Tage": "Abwesenheit 21 Tage ab Hochsommer (Tag 195).",
     "Urlaub im Winter, 28 Tage": "Abwesenheit 28 Tage ab Mitte Januar (Tag 15).",
 }

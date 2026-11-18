@@ -66,9 +66,22 @@ st.markdown(
     """
 Zwölf Zimmerpflanzen trocknen je nach **Art, Jahreszeit und Wetter** unterschiedlich schnell aus. **Akt 1** fragt: Reicht ein gut abgestimmter **Gießkalender**, oder lohnt es, die **Bodenfeuchte zu messen**, wenn die Messung rauscht und jede Kontrolle etwas kostet? **Akt 2** fragt: Soll man **vor dem Urlaub** noch gießen, und was bringen **Docht, Schatten und ein Nachbar**?
 
-Alle Pflanzenzahlen sind **Annahmen** (Modellrechnung, keine Pflegeempfehlung). Weiter unten: die **Kernfragen**, dann die Expander **🔧 Wie wir das erreichen – vollständiger Methodenvergleich**, **📐 Mathematische Formulierung** und **⚠️ Annahmen, Grenzen und bekannte Probleme**.
+Alle Pflanzenzahlen sind **Annahmen** (Modellrechnung, keine Pflegeempfehlung). Direkt darunter erklärt der Expander **💬 In einfachen Worten** das Ganze ohne Formeln. Weiter unten: die **Kernfragen**, dann die Expander **🔧 Wie wir das erreichen – vollständiger Methodenvergleich**, **📐 Mathematische Formulierung** und **⚠️ Annahmen, Grenzen und bekannte Probleme**.
 """
 )
+
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/giess-kalender-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Zwölf erfundene Zimmerpflanzen trocknen unterschiedlich schnell aus: Kakteen langsam, durstige Arten schnell, im Winter langsamer als im Sommer. Gießt man nach einem **festen Kalender**, oder prüft man die Erde und gießt **nach Messung**? Die Anwendung stellt beide Wege nebeneinander und rechnet für jeden, wie viel Trockenheit und wie viel Fäulnis er verursacht, was das Gießen kostet und was jede Kontrolle an Aufmerksamkeit kostet.
+
+Ein auf jede Pflanze abgestimmter Kalender ist stark. Messen lohnt erst, wenn die Messung genau ist und das Nachschauen wenig kostet; eine grobe Fingerprobe verliert gegen den Kalender. Im zweiten Teil geht es um den Urlaub: Soll man vor der Abreise noch gießen? Das hängt von der Pflanzenart, der Jahreszeit und davon ab, wie schwer Fäulnis wiegt. Docht, Schatten und ein Nachbar helfen. Alle Zahlen der Pflanzen sind Annahmen.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/giess-kalender-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
 st.caption("🔗 Die Adresszeile oben spiegelt Ihre aktuelle Konfiguration wider – einfach kopieren, um ein Szenario zu teilen.")
 
 load_permalink_settings()
@@ -176,7 +189,7 @@ with tab1:
     m4.metric("Lerner (Jahr 3)", f"{min(lern_cal['loss'], lern_meas['loss']):.1f}", delta="durch Probieren", delta_color="off")
     st.caption(
         "Verlust = Trockenstress (Tage) + Gewichte x (Fäulnis, Gießen, Kontrollen). Delta: mein Wert minus Referenz, negativ ist besser. "
-        "Abgestimmte Strategien kennen die Verteilung des Modells (Quasi-Orakel); die Lerner finden ihre Parameter durch Probieren."
+        "Abgestimmte Strategien sind auf dem Modell selbst abgestimmt (Quasi-Orakel); die Lerner finden ihre Pflanzenparameter durch Probieren."
     )
     table = [
         {
@@ -229,7 +242,7 @@ with tab2:
         st.markdown("- " + EV.umschlag_text(name, turn[name]))
     st.caption(
         f"Verlust = Trockenstress + {wrot:g} x Fäulnis je Pflanze; Abreisezustand = Feuchte am Abreisetag unter dem abgestimmten Sommer/Winter-Kalender; "
-        f"{paths} Urlaube. Der Umschlagpunkt hängt stark am Fäulnisgewicht."
+        f"{paths} Urlaube. Im Winter hängt der Umschlagpunkt stark am Fäulnisgewicht, im Hochsommer kaum."
     )
     noise = AB.absence_noise(int(paths), int(a_days), PLANTS.n, int(seed) + 1, float(ar))[0]
     P = PLANTS.n
@@ -260,7 +273,7 @@ with tab2:
     st.plotly_chart(V.fig_aids(aids), width="stretch", key="aids_chart")
     st.caption(
         f"Nutzen = Trockenstress-Tage ohne Hilfe minus mit Hilfe, je Pflanze. Ohne Hilfe im Mittel {base['dry'].mean():.2f} Stress-Tage. "
-        f"Docht-Vorrat {dock:g}, Schatten-Faktor {shade:g} (Annahmen). Gleichmäßig verteilte Nachbarbesuche genügen: Die Vormessung fand keinen Vorteil für andere Tage."
+        f"Docht-Vorrat {dock:g}, Schatten-Faktor {shade:g} (Annahmen). Gleichmäßig verteilte Nachbarbesuche liegen höchstens 0,1 Stress-Tage (Summe aller Pflanzen) hinter dem besten Plan (Aufzählung aller Besuchstage bei 14 und 21 Tagen, bis zu zwei Besuche)."
     )
 
 # --- Grenzen -------------------------------------------------------------------------------------------------------------------------------
@@ -290,9 +303,55 @@ with st.expander("🔧 Wie wir das erreichen – vollständiger Methodenvergleic
     st.markdown(TX.METHODS_MARKDOWN)
 
 with st.expander("📐 Mathematische Formulierung"):
-    st.markdown(TX.MATH_HELP)
-    for block in TX.MATH_BLOCKS:
-        st.markdown(f"$$\n{block}\n$$")
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/giess-kalender-erklaert.json, nicht von Hand ändern)
+    st.markdown(
+        r"""
+**Lesehilfe.** Gegeben sind zwölf Pflanzen mit je einer Trockenzeit, einem Stressbeginn, einem Welkepunkt und einer Fäulnisgrenze, ein Jahreszeit- und Wetterfaktor sowie Kosten für Gießen und Kontrolle. Gesucht sind Gießzeitpunkte, die den Verlust je Pflanze und Jahr klein halten, wenn die Bodenfeuchte nur verrauscht gemessen werden kann.
+
+| Symbol | Bedeutung |
+|---|---|
+| $s_t$ | relative Bodenfeuchte zu Beginn von Tag $t$ (1 = frisch gegossen) |
+| $s_w$, $s^*$ | Welkepunkt, Stressbeginn (Feuchte, ab der die Pflanze leidet) |
+| $g$ | Fäulnisgrenze (1 = keine) |
+| $k$ | Austrocknung je Tag oberhalb des Stressbeginns, $k=(1-s^*)/D$ mit $D$ Tagen von voll bis Stressbeginn |
+| $\alpha$ | Amplitude der Jahreszeit |
+| $\varepsilon_t,\eta_t$ | Wetterfaktor aller Pflanzen (zusammenhängend) und Faktor je Pflanze, beide mit Mittel 1 |
+| $W$ | Menge der Gießtage |
+| $\sigma$, $z_t$ | Messrauschen und Standardnormalzahl |
+| $w_{\mathrm{rot}}$, $c_w$, $c_c$ | Gewichte für Fäulnis, Gießen, Kontrolle |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/giess-kalender-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
+    st.markdown(
+        r"""
+$$
+\rho(s)=\operatorname{clip}\!\left(\frac{s-s_w}{s^*-s_w},0,1\right)
+$$
+"""
+    )
+    st.markdown(
+        r"""
+$$
+s_{t+1}=\max\!\Big(s_t-r_t\,\rho(s_t),\;s_w\Big),\qquad r_t=k\Big(1-\alpha\cos\frac{2\pi t}{365}\Big)\,\varepsilon_t\,\eta_t
+$$
+"""
+    )
+    st.markdown(
+        r"""
+$$
+\zeta(s)=\operatorname{clip}\!\left(\frac{s^*-s}{s^*-s_w},0,1\right),\qquad q(s)=\operatorname{clip}\!\left(\frac{s-g}{1-g},0,1\right)\ \text{(nur für }g<1\text{)}
+$$
+"""
+    )
+    st.markdown(
+        r"""
+$$
+L=\sum_{t}\zeta(s_t)+w_{\mathrm{rot}}\sum_{t\in W}q(s_t)+c_w\,|W|+c_c\,N_{\mathrm{Kontrollen}},\qquad \hat s_t=s_t+\sigma z_t
+$$
+"""
+    )
     st.markdown(TX.MATH_NOTE)
 
 with st.expander("⚠️ Annahmen, Grenzen und bekannte Probleme"):
