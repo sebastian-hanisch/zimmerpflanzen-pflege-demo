@@ -1,0 +1,61 @@
+w_rot,cc,sigma,cal_loss,measure_loss,measure,rel_pct
+1.0,0.0,0.0,17.8664,11.65,Schwelle alle 1 Tage,-34.794
+1.0,0.0,0.1,17.8664,13.4471,Adaptive Kontrolle f = 0.5,-24.736
+1.0,0.0,0.2,17.8664,16.2476,Adaptive Kontrolle f = 0.5,-9.061
+1.0,0.0,0.3,17.8664,20.5991,Adaptive Kontrolle f = 0.5,15.295
+1.0,0.01,0.0,17.8664,13.577,Adaptive Kontrolle f = 0.75,-24.008
+1.0,0.01,0.1,17.8664,15.1323,Adaptive Kontrolle f = 0.75,-15.303
+1.0,0.01,0.2,17.8664,17.9335,Adaptive Kontrolle f = 0.5,0.375
+1.0,0.01,0.3,17.8664,22.2898,Adaptive Kontrolle f = 0.5,24.758
+1.0,0.02,0.0,17.8664,15.0307,Adaptive Kontrolle f = 0.75,-15.872
+1.0,0.02,0.1,17.8664,16.5076,Adaptive Kontrolle f = 0.75,-7.605
+1.0,0.02,0.2,17.8664,19.6195,Adaptive Kontrolle f = 0.5,9.812
+1.0,0.02,0.3,17.8664,24.0049,Adaptive Kontrolle f = 0.5,34.358
+1.0,0.05,0.0,17.8664,19.3919,Adaptive Kontrolle f = 0.75,8.538
+1.0,0.05,0.1,17.8664,20.5693,Adaptive Kontrolle f = 0.75,15.128
+1.0,0.05,0.2,17.8664,24.5024,Adaptive Kontrolle f = 0.75,37.142
+1.0,0.05,0.3,17.8664,28.9605,Adaptive Kontrolle f = 0.5,62.094
+1.0,0.1,0.0,17.8664,25.7872,Schwelle alle 3 Tage,44.334
+1.0,0.1,0.1,17.8664,27.2125,Adaptive Kontrolle f = 0.75,52.311
+1.0,0.1,0.2,17.8664,30.916,Adaptive Kontrolle f = 0.75,73.04
+1.0,0.1,0.3,17.8664,36.1412,Adaptive Kontrolle f = 0.75,102.286
+5.0,0.0,0.0,19.1012,11.65,Schwelle alle 1 Tage,-39.009
+5.0,0.0,0.1,19.1012,13.4683,Adaptive Kontrolle f = 0.5,-29.49
+5.0,0.0,0.2,19.1012,16.8991,Adaptive Kontrolle f = 0.5,-11.529
+5.0,0.0,0.3,19.1012,23.5578,Adaptive Kontrolle f = 0.5,23.332
+5.0,0.01,0.0,19.1012,13.5794,Adaptive Kontrolle f = 0.75,-28.908
+5.0,0.01,0.1,19.1012,15.1813,Adaptive Kontrolle f = 0.75,-20.521
+5.0,0.01,0.2,19.1012,18.567,Adaptive Kontrolle f = 0.5,-2.797
+5.0,0.01,0.3,19.1012,25.2154,Adaptive Kontrolle f = 0.5,32.01
+5.0,0.02,0.0,19.1012,15.0331,Adaptive Kontrolle f = 0.75,-21.298
+5.0,0.02,0.1,19.1012,16.5554,Adaptive Kontrolle f = 0.75,-13.328
+5.0,0.02,0.2,19.1012,20.2349,Adaptive Kontrolle f = 0.5,5.936
+5.0,0.02,0.3,19.1012,26.9478,Adaptive Kontrolle f = 0.5,41.079
+5.0,0.05,0.0,19.1012,19.3943,Adaptive Kontrolle f = 0.75,1.535
+5.0,0.05,0.1,19.1012,20.6049,Adaptive Kontrolle f = 0.75,7.873
+5.0,0.05,0.2,19.1012,25.1315,Adaptive Kontrolle f = 0.5,31.57
+5.0,0.05,0.3,19.1012,31.6713,Adaptive Kontrolle f = 0.5,65.808
+5.0,0.1,0.0,19.1012,25.7872,Schwelle alle 3 Tage,35.004
+5.0,0.1,0.1,19.1012,27.2324,Adaptive Kontrolle f = 0.75,42.569
+5.0,0.1,0.2,19.1012,31.6879,Adaptive Kontrolle f = 0.75,65.895
+5.0,0.1,0.3,19.1012,38.8583,Adaptive Kontrolle f = 0.75,103.434
+20.0,0.0,0.0,21.6025,11.65,Schwelle alle 1 Tage,-46.071
+20.0,0.0,0.1,21.6025,13.5714,Adaptive Kontrolle f = 0.5,-37.177
+20.0,0.0,0.2,21.6025,18.1849,Adaptive Kontrolle f = 0.5,-15.821
+20.0,0.0,0.3,21.6025,28.15,Adaptive Kontrolle f = 0.5,30.309
+20.0,0.01,0.0,21.6025,13.5882,Adaptive Kontrolle f = 0.75,-37.099
+20.0,0.01,0.1,21.6025,15.2511,Adaptive Kontrolle f = 0.75,-29.401
+20.0,0.01,0.2,21.6025,19.8062,Adaptive Kontrolle f = 0.5,-8.315
+20.0,0.01,0.3,21.6025,29.6946,Adaptive Kontrolle f = 0.5,37.459
+20.0,0.02,0.0,21.6025,15.0419,Adaptive Kontrolle f = 0.75,-30.37
+20.0,0.02,0.1,21.6025,16.6204,Adaptive Kontrolle f = 0.75,-23.063
+20.0,0.02,0.2,21.6025,21.4276,Adaptive Kontrolle f = 0.5,-0.81
+20.0,0.02,0.3,21.6025,31.4463,Adaptive Kontrolle f = 0.5,45.568
+20.0,0.05,0.0,21.6025,19.4031,Adaptive Kontrolle f = 0.75,-10.181
+20.0,0.05,0.1,21.6025,20.6734,Adaptive Kontrolle f = 0.75,-4.301
+20.0,0.05,0.2,21.6025,26.2916,Adaptive Kontrolle f = 0.5,21.706
+20.0,0.05,0.3,21.6025,36.062,Adaptive Kontrolle f = 0.5,66.934
+20.0,0.1,0.0,21.6025,25.7872,Schwelle alle 3 Tage,19.371
+20.0,0.1,0.1,21.6025,27.3009,Adaptive Kontrolle f = 0.75,26.378
+20.0,0.1,0.2,21.6025,32.9475,Adaptive Kontrolle f = 0.75,52.517
+20.0,0.1,0.3,21.6025,43.6097,Adaptive Kontrolle f = 0.5,101.873
