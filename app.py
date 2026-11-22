@@ -315,9 +315,9 @@ with st.expander("📐 Mathematische Formulierung"):
 | $g$ | Fäulnisgrenze (1 = keine) |
 | $k$ | Austrocknung je Tag oberhalb des Stressbeginns, $k=(1-s^*)/D$ mit $D$ Tagen von voll bis Stressbeginn |
 | $\alpha$ | Amplitude der Jahreszeit |
-| $\varepsilon_t,\eta_t$ | Wetterfaktor aller Pflanzen (zusammenhängend) und Faktor je Pflanze, beide mit Mittel 1 |
+| $\varepsilon_t,\eta_t$ | Wetterfaktor aller Pflanzen (autokorreliert) und Faktor je Pflanze, beide mit Mittel 1 |
 | $W$ | Menge der Gießtage |
-| $\sigma$, $z_t$ | Messrauschen und Standardnormalzahl |
+| $\sigma$, $z_t$ | Messrauschen und standardnormalverteilte Zufallszahl |
 | $w_{\mathrm{rot}}$, $c_w$, $c_c$ | Gewichte für Fäulnis, Gießen, Kontrolle |
 
 [Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/giess-kalender-erklaert.html#fachleute)
