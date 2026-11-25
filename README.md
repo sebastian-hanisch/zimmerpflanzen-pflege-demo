@@ -1,7 +1,6 @@
 # Zimmerpflanzen gießen: Kalender oder Messen? – Streamlit-Demo
 
-<!-- TODO nach dem Deploy: direkt hierher den Live-Link setzen (Leerzeile davor und danach):
-**[→ Demo live ausprobieren](https://sebastianhanisch-zimmerpflanzen-pflege-demo.streamlit.app/)** -->
+**[→ Demo live ausprobieren](https://sebastianhanisch-zimmerpflanzen-pflege-demo.streamlit.app/)**
 
 Fall-Demo für die Website „Sebastian Hanisch – Operations Research und Machine Learning“ (`demos.html`). Zwölf Zimmerpflanzen in drei Klassen (4 Sukkulenten, 5 Zimmerpflanzen, 3 durstige) trocknen je nach Art, Jahreszeit und Wetter unterschiedlich schnell aus. **Akt 1** vergleicht Gießkalender (je Pflanze abgestimmt, mit Sommer- und Winterabstand) mit Strategien, die die Bodenfeuchte messen (Schwelle, adaptive Kontrolle), wenn die Messung rauscht und jede Kontrolle etwas kostet; dazu zwei Lerner, die ihre Parameter durch Probieren finden statt durch Abstimmung. **Akt 2** fragt, ob man vor einem Urlaub noch gießen soll, und was Docht, Schatten und Nachbarbesuche bringen. Ein Tab „Von Hand“ rechnet eine Pflanze in exakten Brüchen.
 
